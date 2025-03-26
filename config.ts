@@ -1,13 +1,16 @@
 import mysql from 'mysql2/promise';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 // Configuración del pool de conexiones
 const dbConfig = {
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'tiendadb',
-  connectionLimit: 10,  // Límite de conexiones simultáneas en el pool
-  queueLimit: 0         // Número de conexiones en espera (0 significa sin límite)
+  host: process.env.DB_HOST,  // Esto toma el valor de la variable de entorno DB_HOST
+  user: process.env.DB_USER,  // Esto toma el valor de la variable de entorno DB_USER
+  password: process.env.DB_PASSWORD,  // Esto toma el valor de la variable de entorno DB_PASSWORD
+  database: process.env.DB_NAME,  // Esto toma el valor de la variable de entorno DB_NAME
+  connectionLimit: 10,
+  queueLimit: 0,
 };
 
 // Crear el pool de conexiones
